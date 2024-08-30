@@ -1,0 +1,9 @@
+[package]
+name = "terminal"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.86"
+raylib = "5.0.2"
+rustix = {version="0.38.35", features=["pty"]}
