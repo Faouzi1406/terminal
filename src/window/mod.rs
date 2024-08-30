@@ -1,4 +1,8 @@
+pub mod ansi_drawer;
+pub mod cursor;
+
 use crate::terminal::Terminal;
+use ansi_drawer::AnsiDrawer;
 use anyhow::Result;
 use raylib::{color::Color, prelude::RaylibDraw, RaylibHandle};
 
@@ -144,6 +148,16 @@ impl Window {
 
             let mut d = rl.begin_drawing(&thread);
             d.clear_background(Color::BLACK);
+
+            match self.terminal.buffer() {
+                Ok(buffer) => {
+                    let str: String = buffer.iter().map(|x| *x).collect();
+                    AnsiDrawer::new()
+                        .draw_ansi_str(d, str.as_str())
+                        .expect("terminal failed to draw ansi: ");
+                }
+                Err(err) => panic!("terminal failed to get buffer: {err}"),
+            }
         }
     }
 }
