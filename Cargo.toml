@@ -6,6 +6,6 @@ edition = "2021"
 [dependencies]
 ansi-parser = "0.9.1"
 anyhow = "1.0.86"
-raylib = "5.0.2"
+gtk4 = "0.9.1"
 rustix = {version="0.38.35", features=["pty"]}
 vte = "0.13.0"
